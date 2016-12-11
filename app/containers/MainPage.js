@@ -58,11 +58,11 @@ export default class MainPage extends Component {
       Icon.getImageSource('md-person', 60, theme.tabButton.normalColor).then((source) => this.setState({ moreNormal: source }));
       Icon.getImageSource('md-person', 60, theme.tabButton.selectedColor).then((source) => this.setState({ moreSelected: source }));
   }
+}
 
-  const styles = {
-    img: {
-      width: 20,
-      height: 20
-    }
+const styles = {
+  img: {
+    width: 20,
+    height: 20
   }
 }
