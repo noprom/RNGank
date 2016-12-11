@@ -27,12 +27,14 @@ class BottomTabBar extends Component {
     };
     this.tabNames = ['首页', '发现', '收藏', '更多'];
   }
+
   render() {
     const {navigator} = this.props;
     return (
       <TabNavigator
           hidesTabTouch={true}
-          tabBarStyle={styles.tabBarStyle}>
+          tabBarStyle={styles.tabBarStyle}
+          sceneStyle={{paddingBottom: styles.tabBarStyle.height}}>
           <TabNavigator.Item
               selected={this.state.selectedTab === 'home'}
               title={this.tabNames[0]}
