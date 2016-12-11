@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Platform, TouchableNativeFeedback, TouchableHighlight } from 'react-native';
 import ImageTabPage from './TabPages/ImageTabPage';
 import TextTabPage from './TabPages/TextTabPage';
 import VideoTabPage from './TabPages/VideoTabPage';
@@ -18,6 +18,18 @@ export default class DiscoveryFragment extends Component {
       this.tabColor = [['rgb(141,192,89)','#000','rgb(51,154,237)'],['rgb(249,89,58)','rgb(154,53,172)','rgb(65,87,175)']];
     }
 
+    _renderBtnContent(i, index) {
+        return(
+            <View style={{width:100, height:100, borderRadius:50, alignItems:'center', justifyContent:'center'}}>
+                <Avatar icon={this.tabIcon[i][index]} width={70} backgroundColor={this.tabColor[i][index]}/>
+            </View>
+        );
+    }
+
+    _itemPressCallback(id) {
+
+    }
+
     render() {
         return(
           <View style={styles.container}>
@@ -29,10 +41,22 @@ export default class DiscoveryFragment extends Component {
                               <View style={styles.btnRow} key={i}>
                                   {this.tabNames[i].map((subItem, index) => {
                                       return(
-                                          <View style={styles.btnCell} key={index}>
-                                              <Avatar icon={this.tabIcon[i][index]} width={70} backgroundColor={this.tabColor[i][index]}/>
-                                              <Text style={styles.label}>{subItem}</Text>
-                                          </View>
+                                        <View style={styles.btnCell} key={i + index}>
+                                            {Platform.OS === 'android' ?
+                                                <TouchableNativeFeedback
+                                                    onPress={this._itemPressCallback.bind(this, i + index)}
+                                                    background={TouchableNativeFeedback.Ripple('rgba(0,0,0,.2)', true)}>
+                                                    {this._renderBtnContent(i, index)}
+                                                </TouchableNativeFeedback>
+                                                :
+                                                <TouchableHighlight
+                                                    onPress={this._itemPressCallback.bind(this, i + index)}
+                                                    underlayColor={theme.touchableHighlightUnderlayColor}>
+                                                    {this._renderBtnContent(i, index)}
+                                                </TouchableHighlight>
+                                            }
+                                          <Text style={styles.label}>{subItem}</Text>
+                                        </View>
                                       );
                                   })}
                               </View>
@@ -52,20 +76,19 @@ const styles = StyleSheet.create({
     },
     btnPanel: {
         backgroundColor: '#fff',
-        height: 270,
+        height: px2dp(250),
         width: theme.screenWidth,
-        marginTop: 12,
+        marginTop: px2dp(12),
         borderBottomColor: theme.segment.color,
         borderBottomWidth: theme.segment.width,
         borderTopColor: theme.segment.color,
-        borderTopWidth: theme.segment.width
+        borderTopWidth: theme.segment.width,
+        padding: px2dp(10)
     },
     btnRow: {
         flex: 1,
         flexDirection: 'row',
-        alignItems: 'center',
-        paddingLeft: 10,
-        paddingRight: 10,
+        alignItems: 'center'
     },
     btnCell: {
         flex: 1,
@@ -73,7 +96,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     label: {
-        marginTop: 8,
+        marginTop: px2dp(-5),
         color: "#000"
     }
 });
