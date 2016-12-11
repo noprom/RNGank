@@ -4,7 +4,7 @@ import { Platform, Dimensions, PixelRatio } from 'react-native';
 import colors from './colors';
 import px2dp from '../utils/px2dp';
 
-const favoriteColor = colors.limeGreen;
+const favoriteColor = colors.black;
 export default {
   mainThemeColor: favoriteColor,
   pageBackgroundColor: '#f4f4f4',
