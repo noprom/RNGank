@@ -8,7 +8,7 @@ export default class MeFragment extends Component {
   render() {
     return (
       <View>
-        <NavigationBar />
+        <NavigationBar title="我"/>
         <Text>me</Text>
       </View>
     );
