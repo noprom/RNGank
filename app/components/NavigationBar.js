@@ -1,13 +1,14 @@
 'use strict';
 import React, { Component, PropTypes } from 'react';
-import { StyleSheet, Platform, View, Text } from 'react-native';
+import { StyleSheet, Platform, View, Text, TouchableNativeFeedback, TouchableHighlight } from 'react-native';
 import theme from '../constants/theme';
 import px2dp from '../utils/px2dp';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class NavigationBar extends Component {
     static propTypes = {
-        title: PropTypes.string.isRequired
+        title: PropTypes.string.isRequired,
+        backPress: PropTypes.func
     };
 
     constructor(props) {
@@ -15,11 +16,16 @@ export default class NavigationBar extends Component {
     }
 
     render() {
-        const {title} = this.props;
+        const {title, backPress} = this.props;
         return (
             <View style={styles.toolbar}>
                 <View style={styles.fixedCell}>
-
+                  {
+                    backPress ?
+                      <IconButton onPress={backPress} />
+                      :
+                      null
+                  }
                 </View>
                 <View style={styles.centerCell}>
                     <Text style={styles.title}>{title}</Text>
@@ -29,6 +35,34 @@ export default class NavigationBar extends Component {
                 </View>
             </View>
         );
+    }
+}
+
+class IconButton extends Component {
+    static propTypes = {
+        onPress: PropTypes.func
+    };
+
+    render() {
+        if(Platform.OS === 'android') {
+            return(
+                <TouchableNativeFeedback
+                    onPress={this.props.onPress}>
+                    <View style={styles.backBtn}>
+                        <Icon name="md-arrow-back" color="#fff" size={23}/>
+                    </View>
+                </TouchableNativeFeedback>
+            );
+        } else if(Platform.OS === 'ios') {
+            return(
+                <TouchableHighlight
+                    onPress={this.props.onPress}>
+                    <View style={styles.backBtn}>
+                        <Icon name="ios-arrow-back" color="#fff" size={23}/>
+                    </View>
+                </TouchableHighlight>
+            );
+        }
     }
 }
 
@@ -57,5 +91,10 @@ const styles = StyleSheet.create({
     title: {
         fontSize: theme.toolbar.titleSize,
         color: theme.toolbar.titleColor
+    },
+    backBtn: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1
     }
 });

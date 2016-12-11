@@ -2,14 +2,13 @@
 
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import theme from '../constants/theme';
-import NavigationBar from '../components/NavigationBar';
+import theme from '../../../constants/theme';
 
-export default class CollectionFragment extends Component {
+export default class ImageTabPage extends Component {
   render() {
     return(
       <View style={{flex: 1, backgroundColor: theme.pageBackgroundColor}}>
-        <NavigationBar title="收藏" />
+        <Text>福利</Text>
       </View>
     );
   }
