@@ -10,7 +10,7 @@ export default {
   pageBackgroundColor: '#f4f4f4',
   screenHeight: Dimensions.get('window').height,
   screenWidth: Dimensions.get('window').width,
-  touchableHighlightUnderlayColor: 'rgba(0,0,0,.6)',
+  touchableHighlightUnderlayColor: 'rgba(0,0,0,.4)',
   touchableOpacityActiveOpacity: 0.5,
   segment: {
     color: '#ccc',
