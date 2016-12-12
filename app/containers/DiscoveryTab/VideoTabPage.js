@@ -1,7 +1,7 @@
 'use strict';
 
-import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
 import theme from '../../constants/theme';
 import NavigationBar from '../../components/NavigationBar';
 import BackPageComponent from '../BackPageComponent';
