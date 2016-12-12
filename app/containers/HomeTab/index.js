@@ -31,6 +31,10 @@ class HomeFragment extends Component {
     }
   }
 
+  _onPress() {
+    this.props.actions.fetchData(getDate());
+  }
+
   render() {
     const dataSource = this.props.dataSource;
     return (
@@ -51,7 +55,7 @@ class HomeFragment extends Component {
                   }
               </View>
               <View style={styles.scrollContents}>
-                <Text>Hello</Text>
+                {/*<Text>{this.props.dataSource}</Text>*/}
               </View>
           </ScrollView>
       </View>
@@ -74,17 +78,6 @@ class ImageView extends Component {
                 </View>
             </View>
         );
-    }
-}
-
-class MyList extends Component {
-
-    render() {
-        // return(
-        //     <ListView
-        //
-        //     />
-        // );
     }
 }
 
@@ -123,3 +116,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     }
 });
+
+const mapStateToProps = (state) => {
+    return {
+        dataSource: state.data.dataSource,
+        loading: state.data.loading
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        actions: bindActionCreators(Actions, dispatch)
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeFragment);

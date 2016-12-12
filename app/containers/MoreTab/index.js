@@ -28,6 +28,7 @@ export default class MeFragment extends Component {
             <View style={[styles.block, styles.intro]}>
             </View>
             <View style={styles.block}>
+                <RowItem title="首页内容展示顺序" icon="md-reorder" onPress={this._itemClickCallback.bind(this)}/>
                 <RowItem title="自定义主题" icon="md-brush" onPress={this._itemClickCallback.bind(this)} />
                 <RowItem title="选择语言 / Language" icon="md-globe" renderSegment={false} onPress={this._itemClickCallback.bind(this)} />
             </View>
