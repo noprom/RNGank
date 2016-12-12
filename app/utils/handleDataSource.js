@@ -25,7 +25,7 @@ export function getExternalResList(dataSource) {
 }
 
 export function getTargetList(dataSource, target) {
-    switch(target){
+    switch(target) {
         case 'Android':
             return dataSource.results.Android;
         case 'iOS':
