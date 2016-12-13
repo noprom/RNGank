@@ -11,7 +11,7 @@ export default {
   screenHeight: Dimensions.get('window').height,
   screenWidth: Dimensions.get('window').width,
   touchableHighlightUnderlayColor: 'rgba(0,0,0,.4)',
-  touchableOpacityActiveOpacity: 0.5,
+  touchableOpacityActiveOpacity: 0.8,
   segment: {
     color: '#ccc',
     width: 1 / PixelRatio.get()
